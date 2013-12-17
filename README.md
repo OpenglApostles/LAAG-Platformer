@@ -1,4 +1,5 @@
-LAAG-Platformer
-===============
+SDL-Tests
+=========
 
-Linear Algebra and Analytic Geometry - Platformer
+Trying to use SDL with OpenGL. by attila3453
+Semaphores. by ughuuu
