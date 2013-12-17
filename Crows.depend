@@ -117,3 +117,56 @@
 	<cmath>
 	<string>
 
+1387274852 source:d:\git\laag-platformer\main.cpp
+	<fstream>
+	<cstdio>
+	<glm/glm.hpp>
+	"include/manager.h"
+
+1387269879 d:\git\laag-platformer\include\manager.h
+	"manager_space.h"
+	"render_manager.h"
+	"ttf_manager.h"
+	<string>
+
+1385157212 d:\git\laag-platformer\include\manager_space.h
+	<SDL2/SDL.h>
+	<GL/glew.h>
+	<GL/gl.h>
+	<iostream>
+
+1387271642 d:\git\laag-platformer\include\render_manager.h
+	"manager_space.h"
+	<vector>
+	<string>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/glm.hpp>
+
+1387271131 d:\git\laag-platformer\include\ttf_manager.h
+	"manager_space.h"
+	"render_manager.h"
+	<SDL2/SDL_ttf.h>
+	<vector>
+	<glm/glm.hpp>
+
+1387272449 source:d:\git\laag-platformer\src\manager.cpp
+	"..\include\manager.h"
+	<cstdlib>
+	<sstream>
+
+1385157208 source:d:\git\laag-platformer\src\manager_space.cpp
+	"../include/manager_space.h"
+	<cstdlib>
+	<stdio.h>
+	<SDL2/SDL_image.h>
+
+1387274826 source:d:\git\laag-platformer\src\render_manager.cpp
+	"../include/render_manager.h"
+	<fstream>
+	<SDL2/SDL_image.h>
+
+1387271693 source:d:\git\laag-platformer\src\ttf_manager.cpp
+	"../include/ttf_manager.h"
+	<cmath>
+	<string>
+
