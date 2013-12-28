@@ -120,10 +120,13 @@ void render_obj::end() {
 }
 
 void render_manager::putTex(GLuint t_id, int where, const char *var_name) {
-    glActiveTexture(GL_TEXTURE0 + where);
-    glBindTexture(GL_TEXTURE_2D, t_id);
-    GLuint textureId  = glGetUniformLocation(getProg(in_use), var_name);
-    glUniform1i(textureId, 0);
+    if(tex_in_use != t_id){
+        tex_in_use = t_id;
+        glActiveTexture(GL_TEXTURE0 + where);
+        glBindTexture(GL_TEXTURE_2D, t_id);
+        GLuint textureId  = glGetUniformLocation(getProg(in_use), var_name);
+        glUniform1i(textureId, 0);
+    }
 }
 
 render_manager::render_manager() {

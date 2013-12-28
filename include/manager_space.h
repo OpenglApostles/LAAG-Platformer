@@ -20,7 +20,8 @@ namespace manager_space{
     extern std::string test, SHADERS_PATH;
     extern unsigned int W, H ;
     extern char* GAME_TITLE;
-    extern int FPS, font_size, inv_font_size;
+    extern int font_size, inv_font_size;
+    extern float FPS, MS;
     extern bool running, fullscreen;
     extern const char *font_name;
     extern GLuint FONT_SHADER, IMG_SHADER;

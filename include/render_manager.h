@@ -46,6 +46,7 @@ public:
     void drawImg(int w,int h);
 
     int in_use;
+    GLuint tex_in_use;
     camera c;
     render_obj r;
     vector<GLuint> prog;

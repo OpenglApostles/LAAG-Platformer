@@ -1,5 +1,6 @@
 #ifndef MANAGER_H
 #define MANAGER_H
+#include "world.h"
 #include "manager_space.h"
 #include "render_manager.h"
 #include "ttf_manager.h"
@@ -32,7 +33,9 @@ public:
     void mouseButtonUp(SDL_MouseButtonEvent e);
     void mouseWheel(int x, int y);
     void initImg();
-    void drawImg(int i, float x, float y);
+    void drawImg(int i, float x, float y, float w, float h);
+    void drawImgReal(int i, float x, float y);
+    void drawImgCenter(int i, float x, float y, float w, float h);
     void countFrames();
 
     bool runs() {
@@ -41,12 +44,15 @@ public:
     void write(int s, float x, float y);
     void write(std::string s, float x, float y);
     //VARIABLES
+    double ms;
     int lasttime, last_sec, frames, fps;
     render_manager gl;
     ttf_manager ttf_manag;
     SDL_Window *window;
     SDL_GLContext context;
     int mx, my;
+    bool actions[4];
+    world map;
 };
 
 #endif // MANAGER_H
