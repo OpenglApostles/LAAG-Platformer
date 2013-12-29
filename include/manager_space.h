@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <iostream>
+#include <GLM/glm.hpp>
 
 class tex{
     public :
@@ -19,9 +20,10 @@ class tex{
 namespace manager_space{
     extern std::string test, SHADERS_PATH;
     extern unsigned int W, H ;
+    extern glm::vec2 TOPLEFT, BOTTOMRIGHT;
     extern char* GAME_TITLE;
     extern int font_size, inv_font_size;
-    extern float FPS, MS;
+    extern float FPS, MS, EPS;
     extern bool running, fullscreen;
     extern const char *font_name;
     extern GLuint FONT_SHADER, IMG_SHADER;

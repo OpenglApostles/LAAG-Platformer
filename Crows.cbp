@@ -62,6 +62,7 @@
 		<Unit filename="include/manager_space.h" />
 		<Unit filename="include/object.h" />
 		<Unit filename="include/polygon.h" />
+		<Unit filename="include/quadtree.h" />
 		<Unit filename="include/render_manager.h" />
 		<Unit filename="include/ttf_manager.h" />
 		<Unit filename="include/world.h" />
@@ -70,6 +71,7 @@
 		<Unit filename="src/manager_space.cpp" />
 		<Unit filename="src/object.cpp" />
 		<Unit filename="src/polygon.cpp" />
+		<Unit filename="src/quadtree.cpp" />
 		<Unit filename="src/render_manager.cpp" />
 		<Unit filename="src/ttf_manager.cpp" />
 		<Unit filename="src/world.cpp" />

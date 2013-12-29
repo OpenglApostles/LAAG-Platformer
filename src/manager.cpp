@@ -6,6 +6,8 @@
 
 using namespace manager_space;
 
+bool quad = 0;
+
 manager::manager() {
 }
 
@@ -19,7 +21,8 @@ void manager::initImg() {
     gl.loadPNG("data/img/logo.png");
     gl.loadPNG("data/img/ball.png");
     gl.loadPNG("data/img/wall.png");
-    //gl.loadPNG("data/img/test.png");
+    gl.loadPNG("data/img/box.png");
+    gl.loadPNG("data/img/hex.png");
 }
 
 void manager::drawImg(int i, float x, float y, float w, float h) {
@@ -107,6 +110,7 @@ void manager::initOpengl() {
 }
 
 void manager::end() {
+    map.end();
     ttf_manag.end();
     gl.end();
     SDL_GL_DeleteContext(context);
@@ -270,6 +274,10 @@ void manager::keyboardUp(SDL_Keysym key) {
     }
     case SDLK_d:{
         actions[3] = false;
+        break;
+    }
+    case SDLK_q:{
+        quad=!quad;
         break;
     }
     }

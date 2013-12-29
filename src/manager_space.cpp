@@ -27,9 +27,10 @@ const char *font_name="data/fonts/UbuntuMono-R.ttf";
 std::string IMG_PATH = "data/img/";
 ///}
 std::string SHADERS_PATH = "data/shaders/";
+glm::vec2 TOPLEFT, BOTTOMRIGHT;
 unsigned int W = 800 , H = 600;
 char* GAME_TITLE= {"Test"};
-float FPS = 60, MS = 1000/FPS;
+float FPS = 60, MS = 1000/FPS, EPS = 1e-10;
 
 bool running = true, fullscreen = false;
 GLuint FONT_SHADER =1, IMG_SHADER=2;
