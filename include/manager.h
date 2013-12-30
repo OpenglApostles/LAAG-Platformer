@@ -55,6 +55,4 @@ public:
     world map;
 };
 
-extern bool quad;
-
 #endif // MANAGER_H

@@ -191,7 +191,7 @@ bool poly_circle(object o1, object o2, glm::vec2 &ax, float &mtv) {
     }
     return true;
 }
-#include <iostream>
+
 bool circle_circle(object o1, object o2, glm::vec2 &ax, float &mtv) {
     float dist = (o1.p.x - o2.p.x)*(o1.p.x - o2.p.x) + (o1.p.y - o2.p.y)*(o1.p.y - o2.p.y),
           r1 = o1.body.p[0].x * o1.body.sc, r2 = o2.body.p[0].x * o2.body.sc;

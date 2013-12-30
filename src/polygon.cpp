@@ -65,6 +65,15 @@ polygon::polygon(std::string type, float _sc){
         dim.x = b.x - a.x;
         dim.y = b.y - a.y;
         tex_ind = 3;
+    }else
+    if(type == "tri"){
+        p.push_back(glm::vec2(0,-.5));
+        p.push_back(glm::vec2(.5,.5));
+        p.push_back(glm::vec2(-.5,.5));
+        n= computeNormals(p);
+        sc = _sc;
+        this->computeDim();
+        tex_ind = 7;
     }
 }
 

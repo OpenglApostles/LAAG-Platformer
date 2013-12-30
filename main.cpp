@@ -2,8 +2,8 @@
 #include <cstdio>
 #include <glm/glm.hpp>
 #include "include/manager.h"
-#define ELASTICITY_WALL .7f
-#define ELASTICITY_OBJECTS 1.f
+#define ELASTICITY_WALL .9f
+#define ELASTICITY_OBJECTS .9f
 using namespace std;
 using namespace manager_space;
 
@@ -14,18 +14,18 @@ void draw(manager &manag) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glm::vec2 a = manag.map.a, b = manag.map.b, c = (a+b)/2.f;
-    manag.drawImgCenter(4,c.x,c.y,c.x+50,c.y+50);
+    manag.drawImgCenter(4,W/2,H/2,W,H);
 
-    manag.write(test, 0, 0);
-    manag.write(manag.ms, W-font_size, 0);
-    manag.write(manag.fps, W-font_size, 30);
-    float cursor_size = W/40;
-    manag.drawImg(1,manag.mx, manag.my, cursor_size, cursor_size);
     for(int i=0;i<manag.map.obj.size();i++){
         object o = *manag.map.obj[i];
         manag.drawImgCenter(o.body.tex_ind, o.p.x, o.p.y, o.body.dim.x* o.body.sc, o.body.dim.y* o.body.sc);
     }
-    //manag.drawImgCenter(3, contct.x, contct.y, 10,10);
+
+    manag.write(manag.ms, W-font_size, 0);
+    manag.write(manag.fps, W-font_size, 30);
+    float cursor_size = W/40;
+    manag.drawImg(1,manag.mx, manag.my, cursor_size, cursor_size);
+
     SDL_GL_SwapWindow(manag.window);
 }
 
@@ -68,8 +68,8 @@ void checkWorld(object &o, glm::vec2 a, glm::vec2 b, float e){
 }
 
 void workObjects(manager &manag){
-    float acc_modulus = 1./5000., time = MS - manag.ms, spd = acc_modulus * time;
-    glm::vec2 g = glm::vec2(0,1)*0.0008f;
+    float acc_modulus = 1./1000., time = MS - manag.ms, spd = acc_modulus * time;
+    glm::vec2 g = glm::vec2(0,1)*0.0003f;
     g=glm::vec2(0);
     for(int i=0;i<manag.map.obj.size();i++){
         object o = *manag.map.obj[i];
@@ -90,18 +90,21 @@ void collisionResponse(object &o1, object &o2, glm::vec2 ax, glm::vec2 contct, f
 }
 
 void checkPair(object &o1, object &o2){
-    glm::vec2 ax, contact;
-    float mtv;
-    if(o1.check_col(o2, ax, mtv,contact)){
-        contct = contact;
-        o1.p+=ax*mtv/(float)((o1.mass+o2.mass)/o2.mass);
-        o2.p-=ax*mtv/(float)((o1.mass+o2.mass)/o1.mass);
-        collisionResponse(o1, o2, ax, contct, ELASTICITY_OBJECTS);
+    if((o1.p.x-o2.p.x)*(o1.p.x-o2.p.x)+(o1.p.y-o2.p.y)*(o1.p.y-o2.p.y)<=
+       (o1.body.dim.x*o1.body.sc + o2.body.dim.x*o2.body.sc)*(o1.body.dim.x*o1.body.sc + o2.body.dim.x*o2.body.sc)){
+        glm::vec2 ax, contact;
+        float mtv;
+        if(o1.check_col(o2, ax, mtv,contact)){
+            contct = contact;
+            o1.p+=ax*mtv/(float)((o1.mass+o2.mass)/o2.mass);
+            o2.p-=ax*mtv/(float)((o1.mass+o2.mass)/o1.mass);
+            collisionResponse(o1, o2, ax, contct, ELASTICITY_OBJECTS);
+        }
     }
 }
 
 void checkObjects(manager &manag){
-    if(quad){
+    if(0){
         for(int i=0;i<manag.map.obj.size();i++){
             object &o = *manag.map.obj[i];
             if(o.colidable){
@@ -123,32 +126,32 @@ void checkObjects(manager &manag){
 }
 
 void work(manager &manag) {
-    if(!quad)
-    manag.map.removeAllMovableFromTree();
+    //manag.map.removeAllMovableFromTree();
+    manag.map.tree->kill();
     workPlayer(manag);
     workObjects(manag);
     for(int i=0;i<manag.map.obj.size();i++){
         object &o = *(manag.map.obj[i]);
         o.bound = aabb2(o.body.a*o.body.sc+o.p,o.body.b*o.body.sc+o.p);
     }
-    if(!quad)
     manag.map.insertAllMovableToTree();
     checkObjects(manag);
     manag.countFrames();
 }
 
 void initGame(manager &manag){
-    manag.map.a = glm::vec2(W/4,H/4);
-    manag.map.b = glm::vec2(3*W/4,3*H/4);
-    manag.map.obj.push_back(new object(glm::vec2(W/2,H/2), glm::vec2(.1,.1), polygon("circle", 30), 30, true, true));
-    for(int i=0;i<20;i++){
-        int size = 30 + rand()%5;
+    manag.map.a = glm::vec2(W/20,H/20);
+    manag.map.b = glm::vec2(19*W/20,19*H/20);
+    manag.map.obj.push_back(new object(glm::vec2(W/2,H/2), glm::vec2(.1,.1), polygon("circle", 30), 100, true, true));
+    for(int i=0;i<500;i++){
+        int size = 15 + rand()%5;
         string type = "circle";
-        if(i%3 == 0) type = "quad";
-        if(i%3 == 1) type = "hex";
+        if(i%4 == 0) type = "quad";
+        if(i%4 == 1) type = "hex";
+        if(i%4 == 2) type = "tri";
         //manag.map.obj.push_back(new object(glm::vec2(W/2,H/2), glm::vec2(0,0), polygon("quad", 20), 1, true, true));
         float randx = (rand()%RAND_MAX/(float)RAND_MAX),randy = (rand()%RAND_MAX/(float)RAND_MAX);
-        manag.map.obj.push_back(new object(glm::vec2(W/4+randx*(2*W/4),H/4+randy*(2*H/4)), glm::vec2((.5-randx)/100,(.5-randy)/100), polygon(type, size), size, true, true));
+        manag.map.obj.push_back(new object(glm::vec2(W/4+randx*(2*W/4),H/4+randy*(2*H/4)), glm::vec2(0), polygon(type, size), size, true, true));
     }
     manag.map.initTree(manag.map.a, manag.map.b);
     TOPLEFT = manag.map.a;
@@ -187,6 +190,7 @@ void init(manager &manag) {
 }
 
 void end(manager &manag) {
+    output("ending game");
     manag.end();
     TTF_Quit();
     SDL_Quit();
@@ -197,7 +201,8 @@ int main(int argc, char **argv) {
     init(manag);
     SDL_Event event;
 
-
+    bool skip = false;
+    int skips = 0, max_skips = 5;
     while(manag.runs()) {
         int lt = SDL_GetTicks();
         manag.ms = MS - lt + manag.lasttime;
@@ -286,11 +291,19 @@ int main(int argc, char **argv) {
 
         work(manag);
 
-        draw(manag);
+        if(!skip || skips>=max_skips){
+            skips = 0;
+            draw(manag);
+        }else{
+            skip = false;
+            skips++;
+        }
 
         int ticks = SDL_GetTicks();
-        if(ticks - manag.lasttime < MS) {
+        if(ticks - manag.lasttime <= MS) {
             SDL_Delay( MS - (ticks - manag.lasttime ));
+        }else {
+            skip = true;
         }
     }
 

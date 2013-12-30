@@ -2,16 +2,17 @@
 #include <iostream>
 #include "../include/manager_space.h"
 
-void quadtree::cleanUp() {
+void quadtree::kill() {
     count = 0;
     if(!obj.empty())
         obj.clear();
     if(has) {
         for(int i=0; i<4; i++) {
-            children[i]->cleanUp();
+            children[i]->kill();
             delete children[i];
         }
     }
+    has = false;
 }
 
 quadtree::quadtree() {
@@ -93,18 +94,6 @@ void quadtree::collect(std::vector<object*> &here) {
             here.push_back(obj[i]);
     }
     obj.clear();
-}
-
-void quadtree::kill() {
-    for(int i=0; i<4; i++) {
-        if(has) {
-            if(children[i]->has)
-                children[i]->kill();
-            children[i]->collect(obj);
-            children[i]->cleanUp();
-        }
-    }
-    has=false;
 }
 
 void quadtree::remove(object*  a, aabb2 rem) {

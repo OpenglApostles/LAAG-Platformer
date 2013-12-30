@@ -6,8 +6,6 @@
 
 using namespace manager_space;
 
-bool quad = 0;
-
 manager::manager() {
 }
 
@@ -23,6 +21,7 @@ void manager::initImg() {
     gl.loadPNG("data/img/wall.png");
     gl.loadPNG("data/img/box.png");
     gl.loadPNG("data/img/hex.png");
+    gl.loadPNG("data/img/tri.png");
 }
 
 void manager::drawImg(int i, float x, float y, float w, float h) {
@@ -73,13 +72,17 @@ void setIcon(SDL_Window *window){
 }
 
 void manager::init() {
+    SDL_DisplayMode current;
+    SDL_GetCurrentDisplayMode(0, &current);
+    //W = current.w ;
+    //H = current.h;
     window = SDL_CreateWindow(
                  GAME_TITLE,
                  SDL_WINDOWPOS_CENTERED,
                  SDL_WINDOWPOS_CENTERED,
                  W,
                  H,
-                 SDL_WINDOW_OPENGL |SDL_WINDOW_RESIZABLE
+                 SDL_WINDOW_OPENGL |SDL_WINDOW_RESIZABLE //| SDL_WINDOW_FULLSCREEN
              );
     setIcon(window);
     SDL_ShowCursor(0);
@@ -274,10 +277,6 @@ void manager::keyboardUp(SDL_Keysym key) {
     }
     case SDLK_d:{
         actions[3] = false;
-        break;
-    }
-    case SDLK_q:{
-        quad=!quad;
         break;
     }
     }

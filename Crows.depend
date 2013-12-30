@@ -117,13 +117,13 @@
 	<cmath>
 	<string>
 
-1388346175 source:d:\git\laag-platformer\main.cpp
+1388402262 source:d:\git\laag-platformer\main.cpp
 	<fstream>
 	<cstdio>
 	<glm/glm.hpp>
 	"include/manager.h"
 
-1388324374 d:\git\laag-platformer\include\manager.h
+1388350647 d:\git\laag-platformer\include\manager.h
 	"world.h"
 	"manager_space.h"
 	"render_manager.h"
@@ -151,13 +151,13 @@
 	<vector>
 	<glm/glm.hpp>
 
-1388346313 source:d:\git\laag-platformer\src\manager.cpp
+1388402321 source:d:\git\laag-platformer\src\manager.cpp
 	"..\include\manager.h"
 	<cstdlib>
 	<sstream>
 	<SDL2/SDL_image.h>
 
-1388345772 source:d:\git\laag-platformer\src\manager_space.cpp
+1388402220 source:d:\git\laag-platformer\src\manager_space.cpp
 	"../include/manager_space.h"
 	<cstdlib>
 	<stdio.h>
@@ -173,10 +173,9 @@
 	<cmath>
 	<string>
 
-1388345744 source:d:\git\laag-platformer\src\object.cpp
+1388350647 source:d:\git\laag-platformer\src\object.cpp
 	"../include/object.h"
 	"../include/manager_space.h"
-	<iostream>
 
 1388265596 d:\git\laag-platformer\include\object.h
 	"polygon.h"
@@ -187,7 +186,7 @@
 	<vector>
 	<string>
 
-1388346331 source:d:\git\laag-platformer\src\polygon.cpp
+1388399327 source:d:\git\laag-platformer\src\polygon.cpp
 	"../include/polygon.h"
 
 1388324198 source:d:\git\laag-platformer\src\world.cpp
@@ -199,12 +198,12 @@
 	<glm/glm.hpp>
 	<vector>
 
-1388324826 source:d:\git\laag-platformer\src\quadtree.cpp
+1388401293 source:d:\git\laag-platformer\src\quadtree.cpp
 	"../include/quadtree.h"
 	<iostream>
 	"../include/manager_space.h"
 
-1388346133 d:\git\laag-platformer\include\quadtree.h
+1388400736 d:\git\laag-platformer\include\quadtree.h
 	"object.h"
 	<vector>
 	"manager_space.h"

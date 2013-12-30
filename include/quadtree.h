@@ -2,9 +2,9 @@
 #define QUADTREE_H
 #include "object.h"
 #include <vector>
-#define MAX_NODE_CAPACITY 2
-#define MIN_NODE_CAPACITY 3
-#define MAX_DEPTH 4
+#define MAX_NODE_CAPACITY 5
+#define MIN_NODE_CAPACITY 6
+#define MAX_DEPTH 5
 
 #include "manager_space.h"
 
